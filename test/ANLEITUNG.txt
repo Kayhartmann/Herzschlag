@@ -1,0 +1,74 @@
+HERZSCHLAG – PROJEKT (PWA + Capacitor-Android-App)
+====================================================
+
+Was hier drin ist:
+- www/index.html      -> aktueller Spielstand, inkl. Firebase (Bestenliste,
+                          Codes, News-Banner), Three.js lokal eingebettet
+- www/manifest.json    -> PWA-Manifest (App-Name, Icons, Farben)
+- www/sw.js            -> Service Worker fürs Offline-Caching
+- www/icon-192.png,
+  www/icon-512.png     -> einfache Platzhalter-Icons (Herz in goldenem Ring)
+- www/three.min.js + weitere .js -> Three.js r128 + Bloom-Postprocessing
+- package.json, capacitor.config.json -> für den Android-App-Build
+
+WICHTIG: Firebase (Bestenliste, Codes, News-Banner) braucht immer eine
+echte Internetverbindung, egal ob als PWA oder als App – das lässt sich
+nicht offline cachen, ist aber auch nicht nötig (Codes/Bestenliste sollen
+ja live sein). Grafik, Sound, Spielstand-Speicherung funktionieren
+weiterhin komplett offline.
+
+
+WEG A: Als PWA (installierbare Web-App, kein Play Store nötig)
+-----------------------------------------------------------------
+1) Den kompletten www/-Ordner irgendwo mit HTTPS hosten, z.B. kostenlos
+   über GitHub Pages (Repository erstellen, Ordnerinhalt hochladen,
+   unter Settings -> Pages aktivieren)
+2) Die URL im Handy-Browser öffnen
+3) Chrome/Android zeigt automatisch "Zum Startbildschirm hinzufügen" an
+   (oder über das Browser-Menü manuell auswählen)
+4) Fertig – läuft dann wie eine eigene App, mit Icon, ohne Adressleiste
+
+Vorteil: kein PC, kein Android Studio nötig für diesen Weg.
+Nachteil: kein "echtes" APK zum Weitergeben, Nutzer müssen die URL
+öffnen und selbst installieren.
+
+
+WEG B: Als APK über Capacitor (für Play Store oder direktes Verteilen)
+--------------------------------------------------------------------------
+Vorher installieren, falls noch nicht vorhanden:
+- Node.js:        https://nodejs.org/
+- Java JDK 17:     https://adoptium.net/
+- Android Studio:  https://developer.android.com/studio
+
+Schritte (im Terminal, im entpackten Projektordner):
+
+1) Abhängigkeiten installieren
+   npm install
+   npm install @capacitor/core @capacitor/cli @capacitor/android
+
+2) Android-Projekt erzeugen
+   npx cap add android
+
+3) In Android Studio öffnen
+   npx cap open android
+   -> Android Studio startet automatisch mit dem fertigen Projekt
+
+4) In Android Studio:
+   Menü "Build" -> "Build Bundle(s) / APK(s)" -> "Build APK(s)"
+   -> Fertige APK liegt danach unter:
+      android/app/build/outputs/apk/debug/app-debug.apk
+
+5) APK aufs Handy übertragen (USB/Cloud), Installation aus unbekannten
+   Quellen erlauben, öffnen.
+
+
+Änderst du später die Spieldatei? Einfach die neue Version als
+www/index.html reinkopieren (die Kopfzeilen mit manifest.json/sw.js
+nicht vergessen, falls du eine ganz frische Version ohne diese Zeilen
+reinkopierst), dann:
+   npx cap sync android
+Danach wieder Schritt 4.
+
+Eigene Icons: icon-192.png und icon-512.png sind aktuell nur einfache
+Platzhalter. Ersetz sie gerne durch eigene quadratische PNG-Bilder in
+derselben Auflösung (192x192 und 512x512 Pixel), Dateinamen beibehalten.

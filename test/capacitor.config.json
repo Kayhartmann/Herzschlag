@@ -1,0 +1,9 @@
+{
+  "appId": "com.herzschlag.game",
+  "appName": "Herzschlag",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": false
+  }
+}

@@ -1,0 +1,27 @@
+HERZSCHLAG – ANDROID-APP-ICONS EINSETZEN
+==========================================
+
+1) Diese ZIP entpacken.
+
+2) Den kompletten "res"-Ordner hieraus kopieren nach:
+
+      [dein Projekt]\android\app\src\main\
+
+   -> Windows fragt "Dateien ersetzen?" -> ALLE ERSETZEN bestaetigen.
+   (Es werden nur die Icon-Dateien ic_launcher*.png in den
+    mipmap-Ordnern und die Datei values\ic_launcher_background.xml
+    ueberschrieben - sonst nichts.)
+
+3) apk-aktualisieren.bat ausfuehren (wie gewohnt).
+
+4) WICHTIG: Alte App auf dem Handy DEINSTALLIEREN, dann die neue
+   APK installieren. Android haelt App-Icons im Launcher sonst
+   manchmal hartnaeckig im Cache - bleibt trotzdem das alte Symbol
+   sichtbar, hilft ein Neustart des Handys.
+
+Enthalten:
+- ic_launcher.png        -> klassisches Icon (5 Aufloesungen)
+- ic_launcher_round.png  -> runde Variante (aeltere Launcher)
+- ic_launcher_foreground.png -> Motiv fuer adaptive Icons
+  (moderne Android-Versionen formen das Icon selbst rund/eckig/
+   tropfenfoermig - Hintergrundfarbe dunkel-bordeaux passend gesetzt)

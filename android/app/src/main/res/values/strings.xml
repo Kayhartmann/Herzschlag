@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Herzschlag</string>
+    <string name="title_activity_main">Herzschlag</string>
+    <string name="package_name">com.herzschlag.game</string>
+    <string name="custom_url_scheme">com.herzschlag.game</string>
+</resources>
