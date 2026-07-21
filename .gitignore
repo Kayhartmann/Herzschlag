@@ -1,4 +1,52 @@
-node_modules/ 
-android/.gradle/ 
-android/build/ 
-.idea/ 
+# ===== Node / npm =====
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# ===== Android Build =====
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/app/release/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# ===== IDE / Editor =====
+.idea/
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ===== Capacitor =====
+.capacitor/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Sensible Dateien (Zugangsdaten, Umgebungsvariablen) =====
+.env
+.env.local
+.env.*.local
+secrets.json
+*credentials*
+*password*
+*apikey*
+*.pem
+*.p12
+google-services.json
+GoogleService-Info.plist
+
+# ===== Temporaere Dateien =====
+*.log
+*.tmp
+*.temp
+dist/
