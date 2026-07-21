@@ -1,0 +1,77 @@
+=====================================================
+ HERZSCHLAG – Auto-Updater KOMPLETT-PAKET
+ Zum direkten Entpacken nach C:\herzschlag
+=====================================================
+
+WAS IST IN DIESER ZIP? (fertige Ordnerstruktur)
+
+  game.html                  Das Spiel (Stand: aktuelle GitHub-Version).
+                             AB JETZT bearbeitest du NUR noch diese Datei.
+  index.html                 Kopie fürs Web (GitHub Pages) – wird von
+                             Batch 2 automatisch aktuell gehalten.
+  version.json               Versionsnummer + Changelog für den Updater.
+  www\index.html             DER LOADER = die "APK-Update-Funktion".
+                             Wird in die APK gebaut, holt bei jedem
+                             App-Start die neueste game.html von GitHub.
+                             NICHT bearbeiten!
+  www\game-fallback.html     Offline-Fallback, der mit in die APK kommt
+                             (falls allererster Start ohne Internet).
+  1-updater-aktivieren.bat   EINMALIG ausführen (lädt alles hoch).
+  2-update-veroeffentlichen.bat  Ab dann für jedes Spiel-Update.
+
+An capacitor.config.json, package.json und dem android-Ordner muss
+NICHTS geändert werden – der Updater ist reine Web-Logik.
+
+-----------------------------------------------------
+ ⚠️ VOR DEM ÜBERSCHREIBEN – EINE SACHE PRÜFEN
+-----------------------------------------------------
+
+Das Spiel in dieser ZIP ist der Stand, der aktuell auf GitHub
+liegt. Falls deine lokale www\index.html in C:\herzschlag NEUER
+ist (Änderungen, die du noch nicht gepusht hast):
+  -> VOR dem Entpacken deine www\index.html nach game.html
+     kopieren und beim Entpacken game.html NICHT überschreiben.
+Wenn GitHub aktuell ist (letzter Stand wurde gepusht): einfach
+alles überschreiben, passt.
+
+-----------------------------------------------------
+ EINRICHTUNG (einmalig)
+-----------------------------------------------------
+
+1. ZIP nach C:\herzschlag entpacken, Überschreiben bestätigen
+   (wichtig: MIT Ordnerstruktur entpacken, damit die zwei
+   Dateien im www-Ordner landen).
+2. 1-updater-aktivieren.bat ausführen – prüft alles, benennt das
+   alte github-push.bat um (das würde sonst den Loader auf die
+   Pages-Seite kopieren) und pusht zu GitHub.
+3. DANACH einmal apk-aktualisieren.bat ausführen und die neue
+   APK auf dem Handy installieren. Das ist der letzte APK-Bau,
+   den Spiel-Updates jemals brauchen.
+
+-----------------------------------------------------
+ NEUER ARBEITSABLAUF FÜR UPDATES
+-----------------------------------------------------
+
+1. game.html bearbeiten (NICHT mehr www\index.html!)
+2. 2-update-veroeffentlichen.bat ausführen
+3. Versionsnummer + kurzen Changelog eintippen – fertig.
+
+APK-Spieler bekommen das Update automatisch beim nächsten
+App-Start (GitHub-Cache: bis zu ~5 Minuten), inklusive Toast
+"Aktualisiert auf Version X". Die Pages-Seite
+(kayhartmann.github.io/Herzschlag) wird ebenfalls aktualisiert.
+KEIN APK-Neubau, KEINE Neuinstallation nötig. Spielstände
+bleiben erhalten (localStorage wird nicht angetastet), Haptik
+über Capacitor funktioniert weiter.
+
+-----------------------------------------------------
+ WANN DOCH NOCH EINE NEUE APK NÖTIG IST
+-----------------------------------------------------
+
+Nur bei Änderungen AUSSERHALB des Spiels:
+  - App-Icon oder App-Name ändern
+  - neue Capacitor-Plugins (z.B. Push-Nachrichten)
+  - Android-Einstellungen
+Dann wie gewohnt apk-aktualisieren.bat. Tipp: vorher game.html
+über www\game-fallback.html kopieren, damit die eingebaute
+Offline-Version frisch ist.
